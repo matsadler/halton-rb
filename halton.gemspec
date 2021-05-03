@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.description = "A module implementing the fast generation of Halton sequences. The method of generation is adapted from \"Fast, portable, and reliable algorithm for the calculation of Halton number\" by Miroslav Kolář and Seamus F. O'Shea."
   spec.files = Dir["lib/**/*.rb"].concat(Dir["ext/halton/src/**/*.rs"]) << "ext/halton/Cargo.toml" << "ext/halton/Rakefile" << "README.rdoc"
   spec.extensions = ["ext/halton/Rakefile"]
-  spec.rdoc_options = ["--main", "README.rdoc", "--charset", "utf-8", "--exclude", "ext/**"]
+  spec.rdoc_options = ["--main", "README.rdoc", "--charset", "utf-8", "--exclude", "ext/"]
   spec.extra_rdoc_files = ["README.rdoc"]
   spec.authors = ["Mat Sadler"]
   spec.email = ["mat@sourcetagsandcodes.com"]
