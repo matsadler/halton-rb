@@ -1,0 +1,45 @@
+= Halton
+
+A Ruby library for the fast generation of Halton sequences, a deterministic low
+discrepancy sequence that appears to be random. The uniform distribution and
+repeatability makes the sequence ideal for choosing sample points or placing
+objects in 2D or 3D space.
+
+  grid = 10.times.map {10.times.map {"."}}
+  Halton.each(2, 3).take(26).zip("A".."Z") do |(x, y), c|
+    grid[y * 10][x * 10] = c
+  end
+  grid.each {|row| puts row.join(" ")}
+
+Outputs:
+
+  . . R . . I . . . .
+  . L . . . . U C . .
+  X . . F . . . . . O
+  . . . J . A . . . .
+  . D . . . . M S . .
+  P . . . V . . . G .
+  . . B . . Y . . . .
+  . T . . . . E . K .
+  H . . . N . . . . W
+  . . . Z . Q . . . .
+
+The method of generation is adapted from "Fast, portable, and reliable
+algorithm for the calculation of Halton numbers" by Miroslav Kolář and Seamus F.
+O'Shea.
+
+== Install
+
+Install via Rubygems:
+
+  gem install halton
+
+or add it to your Gemfile if you're using Bundler:
+
+  gem "halton"
+
+and then run the bundle command to install.
+
+This gem requires a Rust compiler and the +cargo+ build tool to build the gem's
+native extension. See https://www.rust-lang.org/tools/install for how to
+install Rust. +cargo+ is usually part of the Rust installation.
