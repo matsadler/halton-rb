@@ -42,7 +42,13 @@ class RakeCargoHelper
 
   def rust_name
     prefix = "lib" unless Gem.win_platform?
-    suffix = RbConfig::CONFIG["target_os"] =~ /darwin/i ? ".dylib" : ".so"
+    suffix = if RbConfig::CONFIG["target_os"] =~ /darwin/i
+      ".dylib"
+    elsif Gem.win_platform?
+      ".dll"
+    else
+      ".so"
+    end
     "#{prefix}#{gemname}#{suffix}"
   end
 
