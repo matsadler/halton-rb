@@ -76,7 +76,7 @@ end
 
 desc "clean up release build artifacts"
 task clean: [:cargo, :cd] do
-  # sh "cargo clean --release"
+  sh "cargo clean --release"
 end
 
 desc "clean up build artifacts"
