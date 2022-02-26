@@ -1,5 +1,4 @@
 ext/halton/target
-ext/halton/Cargo.lock
 *.gem
 lib/halton/halton.bundle
 lib/halton/halton.so

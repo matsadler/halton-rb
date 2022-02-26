@@ -129,7 +129,6 @@ module Halton
     #
     # Can be used to efficiently skip large sections of the sequence. For small
     # values of +n+ simply advances the sequence +n+ times.
-    #
 
     ##
     # :method: remaining
