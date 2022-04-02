@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 
-use magnus::{define_module, function, method, prelude::*, Error};
+use magnus::{exception, define_module, function, method, prelude::*, Error};
 
 #[magnus::wrap(class = "Halton::Sequence", free_immediatly, size)]
 struct Sequence(RefCell<halton::Sequence>);
@@ -13,7 +13,7 @@ impl Sequence {
     fn next(&self) -> Result<f64, Error> {
         match self.0.try_borrow_mut().unwrap().next() {
             Some(f) => Ok(f),
-            None => Err(Error::stop_iteration("iteration reached an end")),
+            None => Err(Error::new(exception::stop_iteration(), "iteration reached an end")),
         }
     }
 

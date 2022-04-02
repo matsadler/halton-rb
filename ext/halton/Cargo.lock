@@ -172,7 +172,6 @@ name = "halton"
 version = "0.1.0"
 dependencies = [
  "halton 0.2.1",
- "lazy_static",
  "magnus",
 ]
 
@@ -242,9 +241,9 @@ dependencies = [
 
 [[package]]
 name = "magnus"
-version = "0.1.0"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1825dcc83398c263845f82fdf847f2599a6d51a4da6e668e5ca8e84309eea8df"
+checksum = "1d3ad5aff730fbde4f9ca5883e8f71011448c4527d67ec2234345f507c1a6fc9"
 dependencies = [
  "bindgen",
  "magnus-macros",
