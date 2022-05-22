@@ -29,11 +29,11 @@ impl Sequence {
 #[magnus::init]
 fn init() -> Result<(), Error> {
     let module = define_module("Halton")?;
-    module.define_singleton_method("number", function!(halton::number, 2));
+    module.define_singleton_method("number", function!(halton::number, 2))?;
     let class = module.define_class("Sequence", Default::default())?;
-    class.define_singleton_method("new", function!(Sequence::new, 1));
-    class.define_method("next", method!(Sequence::next, 0));
-    class.define_method("skip", method!(Sequence::skip, 1));
-    class.define_method("remaining", method!(Sequence::remaining, 0));
+    class.define_singleton_method("new", function!(Sequence::new, 1))?;
+    class.define_method("next", method!(Sequence::next, 0))?;
+    class.define_method("skip", method!(Sequence::skip, 1))?;
+    class.define_method("remaining", method!(Sequence::remaining, 0))?;
     Ok(())
 }
