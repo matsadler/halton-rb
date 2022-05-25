@@ -68,33 +68,17 @@ module Halton
   #
   # The numbers yielded will be in the range > 0 and < 1.
   #
-  def self.each(base, *bases)
-    return to_enum(__method__, base, *bases) unless block_given?
-
-    if bases.empty?
-      seq = Sequence.new(base)
-      loop {yield seq.next}
-      return nil
+  def self.each(base, *bases, &block)
+    case bases.length
+    when 0
+      each_one(base, &block)
+    when 1
+      each_pair(base, bases.first, &block)
+    when 2
+      each_triple(base, bases.first, bases.last, &block)
+    else
+      each_many(*bases.unshift(base), &block)
     end
-
-    if bases.length == 1
-      x = Sequence.new(base)
-      y = Sequence.new(bases.first)
-      loop {yield x.next, y.next}
-      return nil
-    end
-
-    if bases.length == 2
-      x = Sequence.new(base)
-      y = Sequence.new(bases.first)
-      z = Sequence.new(bases.last)
-      loop {yield x.next, y.next, z.next}
-      return nil
-    end
-
-    seqs = bases.unshift(base).map {|b| Sequence.new(b)}
-    loop {yield(*seqs.map(&:next))}
-    nil
   end
 
   # Halton::Sequence implements the fast generation of Halton sequences.
