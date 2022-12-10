@@ -1,4 +1,6 @@
+.bundle/
 ext/halton/target
 *.gem
 lib/halton/halton.bundle
 lib/halton/halton.so
+tmp/
