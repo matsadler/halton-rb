@@ -3,6 +3,7 @@ use std::cell::RefCell;
 use magnus::{
     block::{block_given, Yield, YieldSplat, YieldValues},
     define_module, exception, function, method,
+    scan_args::check_arity,
     prelude::*,
     Error, RArray, Value,
 };
@@ -73,23 +74,23 @@ fn each_triple(
 
 fn each_many(
     rb_self: Value,
-    bases: &[Value],
+    args: &[Value],
 ) -> Result<YieldSplat<impl Iterator<Item = RArray>>, Error> {
-    if bases.is_empty() {
-        return Err(Error::new(
-            exception::arg_error(),
-            "wrong number of arguments (given 0, expected 1+)",
-        ));
-    }
+    check_arity(args.len(), 1..)?;
+    let bases = args
+        .iter()
+        .map(|v| v.try_convert())
+        .collect::<Result<Vec<u8>, _>>()?;
+
     if !block_given() {
         return Ok(YieldSplat::Enumerator(
-            rb_self.enumeratorize("each_many", bases),
+            rb_self.enumeratorize("each_many", args),
         ));
     }
     let mut seqs = bases
-        .iter()
-        .map(|v| v.try_convert().map(halton::Sequence::new))
-        .collect::<Result<Vec<_>, _>>()?;
+        .into_iter()
+        .map(halton::Sequence::new)
+        .collect::<Vec<_>>();
     let mut buffer = Vec::<Value>::with_capacity(seqs.len());
     Ok(YieldSplat::Iter(std::iter::from_fn(move || {
         buffer.clear();
