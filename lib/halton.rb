@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "halton/halton"
+begin
+  /(?<ruby_version>\d+\.\d+)/ =~ RUBY_VERSION
+  require_relative "halton/#{ruby_version}/halton"
+rescue LoadError
+  require_relative "halton/halton"
+end
 
 # The Halton module provides methods for generating Halton sequences, a
 # deterministic low discrepancy sequence that appears to be random. The uniform

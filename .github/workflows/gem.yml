@@ -1,0 +1,47 @@
+name: Gem
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci-data:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.fetch.outputs.result }}
+    steps:
+      - id: fetch
+        uses: oxidize-rb/actions/fetch-ci-data@main
+        with:
+          supported-ruby-platforms: |
+            exclude: [arm-linux]
+          stable-ruby-versions: |
+            exclude: [head]
+
+  native:
+    name: Build native gems
+    needs: ci-data
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-platform: ${{ fromJSON(needs.ci-data.outputs.result).supported-ruby-platforms }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: oxidize-rb/actions/setup-ruby-and-rust@main
+        with:
+          ruby-version: "3.1"
+          bundler-cache: false
+          cargo-cache: true
+          cargo-vendor: true
+          cache-version: v0-${{ matrix.ruby-platform }}
+
+      - uses: oxidize-rb/cross-gem-action@main
+        with:
+          version: latest
+          platform: ${{ matrix.ruby-platform }}
+          ruby-versions: ${{ join(fromJSON(needs.ci-data.outputs.result).stable-ruby-versions, ', ') }}
