@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    halton (0.2.1.3)
+    halton (0.2.1.4)
       rb_sys (~> 0.9.46)
 
 GEM
@@ -20,8 +20,8 @@ PLATFORMS
 
 DEPENDENCIES
   halton!
-  rake-compiler
-  test-unit
+  rake-compiler (~> 1)
+  test-unit (~> 3)
 
 BUNDLED WITH
    2.3.26
