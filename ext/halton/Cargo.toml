@@ -9,4 +9,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 halton = "0.2.1"
-magnus = "0.4.3"
+magnus = "0.4.4"
