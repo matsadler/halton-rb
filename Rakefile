@@ -6,10 +6,9 @@ require "rake/extensiontask"
 task default: :test
 
 spec = Bundler.load_gemspec("halton.gemspec")
-spec.dependencies.map! do |dep|
-  next dep unless dep.name == "rb_sys"
-  Gem::Dependency.new(dep.name, dep.requirement, :development)
-end
+spec.requirements.clear
+spec.required_ruby_version = nil
+spec.required_rubygems_version = nil
 spec.extensions.clear
 spec.files -= Dir["ext/**/*"]
 
@@ -31,6 +30,10 @@ task :dev do
 end
 
 Rake::TestTask.new do |t|
-  t.deps << :dev << :compile
+  t.deps << :compile
   t.test_files = FileList[File.expand_path("test/*_test.rb", __dir__)]
+end
+
+task bench: :compile do
+  ruby "test/bench.rb"
 end

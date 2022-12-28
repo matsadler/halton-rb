@@ -1,4 +1,4 @@
-require "benchmark"
+require "benchmark/ips"
 require_relative "../lib/halton"
 
 def halton_number(base, index)
@@ -14,7 +14,7 @@ end
 
 n = 1_000_000
 base = 17
-Benchmark.bmbm do |x|
+Benchmark.ips do |x|
   x.report("ruby") do
     n.times {|i| halton_number(base, i) }
   end
@@ -39,4 +39,6 @@ Benchmark.bmbm do |x|
     s = Halton::Sequence.new(base)
     n.times {|i| s.next }
   end
+
+  x.compare!
 end

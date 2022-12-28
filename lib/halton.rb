@@ -4,7 +4,11 @@ begin
   /(?<ruby_version>\d+\.\d+)/ =~ RUBY_VERSION
   require_relative "halton/#{ruby_version}/halton"
 rescue LoadError
-  require_relative "halton/halton"
+  begin
+    require_relative "halton/halton"
+  rescue LoadError
+    require_relative "halton.so"
+  end
 end
 
 # The Halton module provides methods for generating Halton sequences, a

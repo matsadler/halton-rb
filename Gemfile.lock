@@ -2,26 +2,28 @@ PATH
   remote: .
   specs:
     halton (0.2.1.4)
-      rb_sys (~> 0.9.46)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    power_assert (2.0.2)
+    benchmark-ips (2.10.0)
+    power_assert (2.0.3)
     rake (13.0.6)
-    rake-compiler (1.2.0)
+    rake-compiler (1.2.1)
       rake
-    rb_sys (0.9.46)
-    test-unit (3.5.5)
+    rb_sys (0.9.53)
+    test-unit (3.5.7)
       power_assert
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  benchmark-ips (~> 2.10)
   halton!
-  rake-compiler (~> 1)
-  test-unit (~> 3)
+  rake-compiler (~> 1.2)
+  rb_sys (~> 0.9)
+  test-unit (~> 3.5)
 
 BUNDLED WITH
    2.3.26

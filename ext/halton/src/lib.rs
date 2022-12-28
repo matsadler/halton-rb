@@ -3,8 +3,8 @@ use std::cell::RefCell;
 use magnus::{
     block::{block_given, Yield, YieldSplat, YieldValues},
     define_module, exception, function, method,
-    scan_args::check_arity,
     prelude::*,
+    scan_args::check_arity,
     Error, RArray, Value,
 };
 
