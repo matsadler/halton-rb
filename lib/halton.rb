@@ -6,7 +6,7 @@ begin
 rescue LoadError
   begin
     require_relative "halton/halton"
-  rescue LoadError
+  rescue LoadError # Cargo Builder in RubyGems < 3.4.6 doesn't install to dir
     require_relative "halton.so"
   end
 end
