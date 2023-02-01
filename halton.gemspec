@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "halton"
-  spec.version = "0.2.1.4"
+  spec.version = "0.2.1.5"
   spec.summary = "A module for generating Halton sequences"
   spec.description = "A module implementing the fast generation of Halton sequences. The method of generation is adapted from \"Fast, portable, and reliable algorithm for the calculation of Halton number\" by Miroslav Kolář and Seamus F. O'Shea."
   spec.files = Dir["lib/**/*.rb"].concat(Dir["ext/halton/src/**/*.rs"]) << "ext/halton/Cargo.toml" << "Cargo.toml" << "Cargo.lock" << "README.rdoc"
