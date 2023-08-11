@@ -23,6 +23,11 @@ Benchmark.ips do |x|
     n.times {|i| Halton.number(base, i) }
   end
 
+  x.report("next") do
+    s = Halton::Sequence.new(base)
+    n.times {|i| s.next }
+  end
+
   x.report("each") do
     i = 0
     Halton.each(base) do |_|
@@ -35,10 +40,10 @@ Benchmark.ips do |x|
     Halton.each(base).take(n)
   end
 
-  x.report("next") do
+  x.report("rtake") do
     s = Halton::Sequence.new(base)
-    n.times {|i| s.next }
+    s.take(n)
   end
 
-  x.compare!
+  x.compare!(order: :baseline)
 end

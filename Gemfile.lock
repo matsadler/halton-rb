@@ -1,18 +1,18 @@
 PATH
   remote: .
   specs:
-    halton (0.2.1.5)
+    halton (0.3.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    benchmark-ips (2.10.0)
+    benchmark-ips (2.12.0)
     power_assert (2.0.3)
     rake (13.0.6)
-    rake-compiler (1.2.1)
+    rake-compiler (1.2.5)
       rake
-    rb_sys (0.9.53)
-    test-unit (3.5.7)
+    rb_sys (0.9.81)
+    test-unit (3.6.1)
       power_assert
 
 PLATFORMS

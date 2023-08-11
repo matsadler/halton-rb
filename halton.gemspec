@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "halton"
-  spec.version = "0.2.1.5"
+  spec.version = "0.3.0"
   spec.summary = "A module for generating Halton sequences"
   spec.description = "A module implementing the fast generation of Halton sequences. The method of generation is adapted from \"Fast, portable, and reliable algorithm for the calculation of Halton number\" by Miroslav Kolář and Seamus F. O'Shea."
   spec.files = Dir["lib/**/*.rb"].concat(Dir["ext/halton/src/**/*.rs"]) << "ext/halton/Cargo.toml" << "Cargo.toml" << "Cargo.lock" << "README.rdoc"
@@ -14,8 +14,8 @@ Gem::Specification.new do |spec|
   spec.homepage = "https://github.com/matsadler/halton-rb"
   spec.license = "MIT"
 
-  spec.requirements = ["Rust >= 1.51.0"]
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.requirements = ["Rust >= 1.61"]
+  spec.required_ruby_version = ">= 2.7.0"
   spec.required_rubygems_version = ">= 3.3.26"
 
   spec.add_development_dependency "rake-compiler", "~> 1.2"
